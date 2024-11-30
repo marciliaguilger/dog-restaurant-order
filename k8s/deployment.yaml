@@ -29,13 +29,13 @@ spec:
         env:
         - name: AWS_REGION
           value: "us-east-1"   
-#        - name: DB_NAME
-#          value: "${DB_NAME}"
-#        - name: DB_PORT
-#          value: "${DB_PORT}"    
-#        - name: DB_USER
-#          value: "${DB_USER}"     
-#        - name: DB_PASSWORD
-#          value: "${DB_PASSWORD}"
-#        - name: DB_HOST
-#          value: "${DB_HOST}"
+        - name: DB_NAME
+          value: "${DB_NAME}"
+        - name: DB_PORT
+          value: "${DB_PORT}"    
+        - name: DB_USER
+          value: "${DB_USER}"     
+        - name: DB_PASSWORD
+          value: "${DB_PASSWORD}"
+        - name: DB_HOST
+          value: "${DB_HOST}"
