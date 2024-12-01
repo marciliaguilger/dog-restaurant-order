@@ -16,6 +16,7 @@ const connectWithRetry = async (
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
       retries++;
+      console.log(err)
       console.log(
         `Database connection failed, retry ${retries}/${maxRetries}...`,
       );
