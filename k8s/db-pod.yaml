@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysql-client
+  namespace: default
+spec:
+  containers:
+  - name: mysql
+    image: mysql:5.7  # Certifique-se de escolher a versão apropriada
+    command: ['sleep', '3600']
+
+
+#kubectl cp ./db/01-create-db.sql default/mysql-client:/01-create-db.sql
+#kubectl cp ./db/02-create-db.sql default/mysql-client:/02-create-db.sql
+#kubectl cp ./db/03-create-db.sql default/mysql-client:/03-create-db.sql
+
+#kubectl exec -it mysql-client -- bash
+#mysql -h <DB_URL> -u user -p DataBase < /01-create-db.sql
+#mysql -h <DB_URL> -u user -p DataBase < /02-create-db.sql
+#mysql -h <DB_URL> -u user -p DataBase < /03-create-db.sql
