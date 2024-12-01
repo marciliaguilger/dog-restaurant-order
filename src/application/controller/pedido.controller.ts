@@ -26,16 +26,21 @@ export class OrderController {
   @Post()
   async createPedido(@Body() createPedidosInput: CreatePedidoInput) {
     console.log('Criando novo pedido');
-    const combos = await this.orderMapper.mapToComboList(
-      createPedidosInput.combos,
-    );
-
-    return {
-      pedidoId: await this.pedidoUseCase.createPedido(
-        createPedidosInput.clienteId,
-        combos,
-      ),
-    };
+    try{
+      const combos = await this.orderMapper.mapToComboList(
+        createPedidosInput.combos,
+      );
+  
+      return {
+        pedidoId: await this.pedidoUseCase.createPedido(
+          createPedidosInput.clienteId,
+          combos,
+        ),
+      };
+    }catch (err) {
+      console.error('Error creating pedido:', err);
+      throw new Error('Error creating pedido');
+    }
   }
 
   @Put(':pedidoId/status')
