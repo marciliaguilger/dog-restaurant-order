@@ -66,14 +66,14 @@ jobs:
       run: |
         sed -i 's/<AWS_ACCOUNT_ID>/${{ secrets.AWS_ACCOUNT_ID }}/g' ./k8s/deployment.yaml
 
-    - name: Replace secrets in deployment.yaml
+    - name: Replace Environment Variables in deployment.yaml
       if: success()
       run: |
-        sed -i 's/value: "\$DB_NAME"/value: "${{ secrets.DB_NAME }}"/g' ./k8s/deployment.yaml
-        sed -i 's/value: "\$DB_PORT"/value: "${{ secrets.DB_PORT }}"/g' ./k8s/deployment.yaml
-        sed -i 's/value: "\$DB_USER"/value: "${{ secrets.DB_USER }}"/g' ./k8s/deployment.yaml
-        sed -i 's/value: "\$DB_PASSWORD"/value: "${{ secrets.DB_PASSWORD }}"/g' ./k8s/deployment.yaml
-        sed -i 's/value: "\$DB_HOST"/value: "${{ secrets.DB_HOST }}"/g' ./k8s/deployment.yaml    
+        sed -i 's|DB_NAME_PLACEHOLDER|${{ secrets.DB_NAME }}|g' ./k8s/deployment.yaml
+        sed -i 's|DB_USER_PLACEHOLDER|${{ secrets.DB_USER }}|g' ./k8s/deployment.yaml
+        sed -i 's|DB_PASSWORD_PLACEHOLDER|${{ secrets.DB_PASSWORD }}|g' ./k8s/deployment.yaml
+        sed -i 's|DB_HOST_PLACEHOLDER|${{ secrets.DB_HOST }}|g' ./k8s/deployment.yaml
+        sed -i 's|DB_PORT_PLACEHOLDER|${{ secrets.DB_PORT }}|g' ./k8s/deployment.yaml   
         
     - name: Apply Kubernetes manifests
       if: success()
