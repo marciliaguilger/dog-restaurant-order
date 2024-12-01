@@ -39,7 +39,7 @@ export class OrderController {
       };
     }catch (err) {
       console.error('Error creating pedido:', err);
-      throw new Error('Error creating pedido');
+      return {'error': 'Error creating pedido'};
     }
   }
 

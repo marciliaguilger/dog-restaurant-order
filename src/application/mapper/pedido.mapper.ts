@@ -54,7 +54,7 @@ export class OrderMapper {
   async getProductPrice(produtoId?: string): Promise<number> {
     let productPrice = 0;
     if (produtoId === undefined) return productPrice;
-    productPrice = await this.produtoClient.getPrice(produtoId);
+    //roductPrice = await this.produtoClient.getPrice(produtoId);
     return productPrice;
   }
 

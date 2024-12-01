@@ -8,7 +8,7 @@ import { IProdutoClient } from 'src/domain/client/produto-client.interface';
 export class ProdutoClient implements IProdutoClient {
   constructor(private readonly httpService: HttpService) {}
   async getPrice(productId: string): Promise<number> {
-    const url = `preco?productId=${productId}`;
+    const url = `${process.env.PRODUTOS_API_URL}preco?productId=${productId}`;
 
     const { data } = await firstValueFrom(
       this.httpService.get<number>(url).pipe(

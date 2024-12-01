@@ -30,13 +30,13 @@ export class PedidoRepository implements IPedidoRepository {
         .where('PedidosCombos.PedidoId = :id', { id: orderEntity.PedidoId })
         .getMany();
 
-      const clienteName = await this.clienteClient.getName(
-        orderEntity.ClienteId,
-      );
+      //const clienteName = await this.clienteClient.getName(
+      //  orderEntity.ClienteId,
+      //);
 
       const order = OrderEntityMapper.mapToOrderDomain(
         orderEntity,
-        clienteName,
+        'teste',
       );
       const orderCombos =
         OrderEntityMapper.mapToOrderComboDomain(combosEntities);
@@ -64,13 +64,13 @@ export class PedidoRepository implements IPedidoRepository {
         throw new Error(`Pedido with ID ${pedidoId} not found.`);
       }
 
-      const clienteName = await this.clienteClient.getName(
-        orderEntity.ClienteId,
-      );
+      //const clienteName = await this.clienteClient.getName(
+      //  orderEntity.ClienteId,
+      //);
 
       const order = OrderEntityMapper.mapToOrderDomain(
         orderEntity,
-        clienteName,
+        'teste',
       );
       const orderCombos =
         OrderEntityMapper.mapToOrderComboDomain(combosEntities);
@@ -96,13 +96,13 @@ export class PedidoRepository implements IPedidoRepository {
         .where('PedidosCombos.PedidoId = :id', { id: orderEntity.PedidoId })
         .getMany();
 
-      const clienteName = await this.clienteClient.getName(
-        orderEntity.ClienteId,
-      );
+      //const clienteName = await this.clienteClient.getName(
+      //  orderEntity.ClienteId,
+      //);
 
       const order = OrderEntityMapper.mapToOrderDomain(
         orderEntity,
-        clienteName,
+        'teste',
       );
       const orderCombos =
         OrderEntityMapper.mapToOrderComboDomain(combosEntities);
