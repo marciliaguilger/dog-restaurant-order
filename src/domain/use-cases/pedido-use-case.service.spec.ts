@@ -3,10 +3,13 @@ import { Pedido } from '../entities/pedido.entity';
 import { IPedidoRepository } from '../repositories/order-repository.interface';
 import { PedidoUseCase } from './pedido-use-case.service';
 import { PedidoStatus } from '../enum/order-status.enum';
+import { IPagamentoClient } from '../client/pagamento-client.interface';
+import { PagamentoClient } from 'src/infrastructure/client/pagamentos/pagamento.client';
 
 describe('PedidoUseCase', () => {
   let service: PedidoUseCase;
   let mockPedidoRepository: Partial<IPedidoRepository>;
+  let mockPagamentoClient: Partial<IPagamentoClient>;
 
   beforeEach(async () => {
     mockPedidoRepository = {
@@ -42,6 +45,7 @@ describe('PedidoUseCase', () => {
       providers: [
         PedidoUseCase,
         { provide: IPedidoRepository, useValue: mockPedidoRepository },
+        { provide: IPagamentoClient, useValue: mockPagamentoClient }
       ],
     }).compile();
 
