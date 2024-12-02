@@ -12,5 +12,6 @@ CREATE TABLE Pedidos(
     ClienteId VARCHAR(40) NULL,
     TotalValorCentavos DECIMAL NOT NULL,
     DescontoValorCentavos DECIMAL NULL,
+    PagamentoId VARCHAR(255) NULL,
     CONSTRAINT PK_Pedido PRIMARY KEY (PedidoId)
 )

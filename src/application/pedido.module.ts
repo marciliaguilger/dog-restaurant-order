@@ -9,9 +9,10 @@ import { PedidoRepository } from 'src/infrastructure/data/repositories/pedido.re
 import { OrderMapper } from './mapper/pedido.mapper';
 import { ProdutoModule } from 'src/infrastructure/client/produto/produto.module';
 import { ClienteModule } from 'src/infrastructure/client/cliente/cliente.module';
+import { PagamentoModule } from 'src/infrastructure/client/pagamentos/pagamento.module';
 
 @Module({
-  imports: [ProdutoModule],
+  imports: [ProdutoModule, PagamentoModule],
   controllers: [OrderController],
   providers: [
     OrderMapper,
@@ -30,7 +31,7 @@ import { ClienteModule } from 'src/infrastructure/client/cliente/cliente.module'
     {
       provide: 'IClienteClient',
       useClass: ClienteModule,
-    },
+    }
   ],
 })
 export class PedidoModule {}

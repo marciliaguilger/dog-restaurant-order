@@ -9,7 +9,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       useFactory: async (configService: ConfigService) => ({
         timeout: configService.get('TIMEOUT'),
         maxRedirects: configService.get('MAX_REDIRECTS'),
-        baseURL: configService.get('CLIENTE_CLIENT'),
+        baseURL: configService.get('CLIENTES_API_URL'),
         headers: {
           'X-Requester-Token': configService.get('REQUESTER_TOKEN'),
         },

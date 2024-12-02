@@ -1,7 +1,8 @@
 import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { ProdutoClient } from './produto.client';
+import { PagamentoClient } from './pagamento.client';
+import { IPagamentoClient } from 'src/domain/client/pagamento-client.interface';
 
 @Module({
   imports: [
@@ -10,7 +11,7 @@ import { ProdutoClient } from './produto.client';
       useFactory: async (configService: ConfigService) => ({
         timeout: configService.get('TIMEOUT'),
         maxRedirects: configService.get('MAX_REDIRECTS'),
-        baseURL: configService.get('PRODUTOS_API_URL'),
+        baseURL: configService.get('PAGAMENTOS_API_URL'),
         headers: {
           'X-Requester-Token': configService.get('REQUESTER_TOKEN'),
         },
@@ -19,11 +20,12 @@ import { ProdutoClient } from './produto.client';
     }),
   ],
   providers: [
+    PagamentoClient,
     {
-      provide: 'IProdutoClient',
-      useClass: ProdutoClient,
+      provide: IPagamentoClient,
+      useClass: PagamentoClient,
     },
   ],
-  exports: ['IProdutoClient'],
+  exports: [IPagamentoClient],
 })
-export class ProdutoModule {}
+export class PagamentoModule {}

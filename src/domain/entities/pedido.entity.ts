@@ -17,6 +17,7 @@ export class Pedido {
   private _status: PedidoStatus;
   private _totalValor: number;
   private _descontoValor?: number;
+  private _pagamentoId?: string;
 
   constructor(clienteId?: string) {
     this._clienteId = clienteId;
@@ -92,6 +93,10 @@ export class Pedido {
     return this._descontoValor;
   }
 
+  get pagamentoId(): string {
+    return this._pagamentoId;
+  }
+
   createOrder() {
     this._pedidoId = randomUUID();
     this._shortId = this._pedidoId.substring(0, 5);
@@ -100,12 +105,13 @@ export class Pedido {
     this._combos = [];
   }
 
-  confirmOrder() {
+  confirmOrder(pagamentoId: string) {
     if (this._status !== PedidoStatus.CREATED)
       throw new DomainException('Ação não permitida');
 
     this._preparacaoIniciada = new Date(Date.now());
     this._status = PedidoStatus.CONFIRMED;
+    this._pagamentoId = pagamentoId
   }
 
   startPreparation() {

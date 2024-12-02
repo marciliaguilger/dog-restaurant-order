@@ -4,11 +4,15 @@ import { IPedidoRepository } from '../repositories/order-repository.interface';
 import { IPedidoUseCase } from './pedido-use-case.interface';
 import { Combo } from '../entities/combo.entity';
 import { PedidoStatus } from '../enum/order-status.enum';
+import { IPagamentoClient } from '../client/pagamento-client.interface';
+import { CriarPagamentoModel } from '../model/criar-pagamento.model';
 @Injectable()
 export class PedidoUseCase implements IPedidoUseCase {
   constructor(
     @Inject(IPedidoRepository)
     private readonly pedidoRepository: IPedidoRepository,
+    @Inject(IPagamentoClient)
+    private readonly pagamentoClient: IPagamentoClient,
   ) {}
 
   async getAllPedidos(): Promise<Pedido[]> {
@@ -51,7 +55,7 @@ export class PedidoUseCase implements IPedidoUseCase {
 
     switch (newStatus) {
       case PedidoStatus.CONFIRMED:
-        order.confirmOrder();
+        order.confirmOrder(order.pagamentoId);
         break;
       case PedidoStatus.PREPARING:
         order.startPreparation();
@@ -73,13 +77,13 @@ export class PedidoUseCase implements IPedidoUseCase {
   }
 
   async payPedido(orderId: string): Promise<string> {
-    const qrCode =
-      '00020101021243650016COM.MERCADOLIBRE02013063638f1192a-5fd1-4180-a180-8bcae3556bc35204000053039865802BR5925IZABEL AAAA DE MELO6007BARUERI62070503***63040B6D';
     const order = await this.pedidoRepository.getPedidoById(orderId);
-    order.confirmOrder();
+    const pagamentoModel = new CriarPagamentoModel(order.clienteId, order.pedidoId, order.calculateOrderTotalAmount(), "PIX")
+    const pagamentoId = await this.pagamentoClient.createPagamento(pagamentoModel)      
+    console.log(pagamentoId)
+    order.confirmOrder(pagamentoId);
     this.pedidoRepository.updatePedido(order);
-
-    return qrCode;
+    return pagamentoId;
   }
 
   async createPedido(customerId: string, combos: Combo[]): Promise<string> {
