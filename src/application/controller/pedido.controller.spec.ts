@@ -74,19 +74,19 @@ describe('OrderController', () => {
       const combo = new Combo('comboId');
       combo.addItem('Lanche', '1', 10);
       const comboInput: ComboInput = { lancheId: '1' };
-      const input: CreatePedidoInput = { clienteId: '123', combos: [comboInput] };
+      const input: CreatePedidoInput = { documento: '123', combos: [comboInput] };
       orderMapper.mapToComboList.mockResolvedValue([combo]);
       pedidoUseCase.createPedido.mockResolvedValue('pedido-id');
 
       const result = await controller.createPedido(input);
 
       expect(orderMapper.mapToComboList).toHaveBeenCalledWith(input.combos);
-      expect(pedidoUseCase.createPedido).toHaveBeenCalledWith(input.clienteId, [combo]);
+      expect(pedidoUseCase.createPedido).toHaveBeenCalledWith(input.documento, [combo]);
       expect(result).toEqual({ pedidoId: 'pedido-id' });
     });
 
     it('should handle errors during pedido creation', async () => {
-      const input: CreatePedidoInput = { clienteId: '123', combos: [] };
+      const input: CreatePedidoInput = { documento: '123', combos: [] };
       orderMapper.mapToComboList.mockRejectedValue(new Error('Mapping error'));
 
       const result = await controller.createPedido(input);
