@@ -7,8 +7,8 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { PedidoStatus } from 'src/domain/enum/order-status.enum';
-import { IPedidoUseCase } from 'src/domain/use-cases/pedido-use-case.interface';
+import { PedidoStatus } from '../../domain/enum/order-status.enum';
+import { IPedidoUseCase } from '../../domain/use-cases/pedido-use-case.interface';
 import { CreatePedidoInput } from '../dtos/input/create-pedido.input';
 import { UpdatePedidoInput } from '../dtos/input/update-pedido.input';
 import { OrderMapper } from '../mapper/pedido.mapper';
