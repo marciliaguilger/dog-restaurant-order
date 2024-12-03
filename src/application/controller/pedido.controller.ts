@@ -51,8 +51,13 @@ export class OrderController {
     if (!updatePedidos.status) {
       throw new Error('Invalid order status');
     }
-    await this.pedidoUseCase.updatePedidoStatus(pedidoId, updatePedidos.status);
-    return { message: 'Pedidos status updated successfully' };
+    try{
+      await this.pedidoUseCase.updatePedidoStatus(pedidoId, updatePedidos.status);
+      return { message: 'Pedidos status updated successfully' };
+    }
+    catch(error){
+      return error.message;
+    }
   }
 
   @Put(':pedidoId/checkout')
@@ -75,7 +80,11 @@ export class OrderController {
 
   @Get('status/:status')
   async getPedidosByStatus(@Param('status') status: PedidoStatus) {
-    const pedidos = await this.pedidoUseCase.getPedidosByStatus(status);
-    return pedidos.map((order) => this.orderMapper.mapToOrderDto(order));
+    try{
+      const pedidos = await this.pedidoUseCase.getPedidosByStatus(status);
+      return pedidos.map((order) => this.orderMapper.mapToOrderDto(order));
+    }catch(error){
+      return error.message || error
+    }
   }
 }
