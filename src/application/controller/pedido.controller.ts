@@ -33,7 +33,7 @@ export class OrderController {
   
       return {
         pedidoId: await this.pedidoUseCase.createPedido(
-          createPedidosInput.clienteId,
+          createPedidosInput.documento,
           combos,
         ),
       };

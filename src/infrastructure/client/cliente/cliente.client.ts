@@ -9,7 +9,7 @@ import { Cliente } from 'src/domain/model/cliente.model';
 export class ClienteClient implements IClienteClient {
   constructor(private readonly httpService: HttpService) {}
   async getCliente(clientId: string): Promise<Cliente> {
-    const url = `name?clientId=${clientId}`;
+    const url = `/clientes/${clientId}`;
 
     const { data } = await firstValueFrom(
       this.httpService.get<Cliente>(url).pipe(

@@ -1,5 +1,5 @@
 export class CreatePedidoInput {
-  clienteId: string;
+  documento: string;
   combos: ComboInput[];
 }
 
