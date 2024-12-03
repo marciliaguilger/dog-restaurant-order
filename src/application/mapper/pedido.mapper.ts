@@ -6,10 +6,10 @@ import {
   GetComboOutput,
   GetPedidoOutput,
 } from '../dtos/output/get-pedido.output';
-import { Pedido } from 'src/domain/entities/pedido.entity';
-import { ProductType } from 'src/domain/enum/product-types.enum';
-import { Combo } from 'src/domain/entities/combo.entity';
-import { IProdutoClient } from 'src/domain/client/produto-client.interface';
+import { Pedido } from '../../domain/entities/pedido.entity';
+import { ProductType } from '../../domain/enum/product-types.enum';
+import { Combo } from '../../domain/entities/combo.entity';
+import { IProdutoClient } from '../../domain/client/produto-client.interface';
 
 @Injectable()
 export class OrderMapper {

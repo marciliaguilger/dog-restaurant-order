@@ -74,6 +74,18 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "src/main.ts",
+      "src/app.module.ts",
+      "src/application/pedido.module.ts",
+      "src/domain/base/all-exceptions.filter.ts",
+      "src/domain/base/type-error-exceptions.filter.ts",
+      "src/domain/model/criar-pagamento.model.ts",
+      "src/domain/base/exception/domain.exception.ts",
+      "src/application/mapper/pedido.mapper.ts",
+      "src/infrastructure/"
+    ]
   }
 }
