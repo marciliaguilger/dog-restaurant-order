@@ -1,6 +1,8 @@
 import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { IClienteClient } from 'src/domain/client/cliente-client.interface';
+import { ClienteClient } from './cliente.client';
 
 @Module({
   imports: [
@@ -18,11 +20,12 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     }),
   ],
   providers: [
+    ClienteClient,
     {
-      provide: 'IClienteModule',
-      useClass: ClienteModule,
+      provide: IClienteClient,
+      useClass: ClienteClient,
     },
   ],
-  exports: ['IClienteModule'],
+  exports: [IClienteClient],
 })
 export class ClienteModule {}

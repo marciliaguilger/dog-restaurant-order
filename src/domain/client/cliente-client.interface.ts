@@ -1,3 +1,7 @@
+import { Cliente } from "../model/cliente.model";
+
 export interface IClienteClient {
-  getName(clientId: string): Promise<string>;
+  getCliente(clientId: string): Promise<Cliente>;
 }
+
+export const IClienteClient = Symbol('IClienteClient');

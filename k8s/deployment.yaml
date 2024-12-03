@@ -28,9 +28,9 @@ spec:
         - containerPort: 3000
         env:
         - name: CLIENTES_API_URL
-          value: ''
+          value: 'http://dog-restaurant-customer.default.svc.cluster.local:80'
         - name: PRODUTOS_API_URL
-          value: ''  
+          value: 'http://dog-restaurant-products.default.svc.cluster.local:80'  
         - name: PAGAMENTOS_API_URL
           value: 'http://dog-restaurant-payments.default.svc.cluster.local:80'                  
         - name: AWS_REGION

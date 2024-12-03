@@ -14,7 +14,7 @@ export class PedidoRepository implements IPedidoRepository {
     private orderRepo: Repository<Pedidos>,
     @Inject('COMBOS_REPOSITORY')
     private combosRepo: Repository<Pedidoscombos>,
-    @Inject('IClienteClient')
+    @Inject(IClienteClient)
     private readonly clienteClient: IClienteClient,
   ) {}
 
@@ -30,13 +30,13 @@ export class PedidoRepository implements IPedidoRepository {
         .where('PedidosCombos.PedidoId = :id', { id: orderEntity.PedidoId })
         .getMany();
 
-      //const clienteName = await this.clienteClient.getName(
-      //  orderEntity.ClienteId,
-      //);
+      const cliente = await this.clienteClient.getCliente(
+        orderEntity.ClienteId,
+      );
 
       const order = OrderEntityMapper.mapToOrderDomain(
         orderEntity,
-        'teste',
+        cliente.nome,
       );
       const orderCombos =
         OrderEntityMapper.mapToOrderComboDomain(combosEntities);
@@ -64,13 +64,13 @@ export class PedidoRepository implements IPedidoRepository {
         throw new Error(`Pedido with ID ${pedidoId} not found.`);
       }
 
-      //const clienteName = await this.clienteClient.getName(
-      //  orderEntity.ClienteId,
-      //);
+      const cliente = await this.clienteClient.getCliente(
+        orderEntity.ClienteId,
+      );
 
       const order = OrderEntityMapper.mapToOrderDomain(
         orderEntity,
-        'teste',
+        cliente.nome
       );
       const orderCombos =
         OrderEntityMapper.mapToOrderComboDomain(combosEntities);
@@ -96,13 +96,13 @@ export class PedidoRepository implements IPedidoRepository {
         .where('PedidosCombos.PedidoId = :id', { id: orderEntity.PedidoId })
         .getMany();
 
-      //const clienteName = await this.clienteClient.getName(
-      //  orderEntity.ClienteId,
-      //);
+      const cliente = await this.clienteClient.getCliente(
+        orderEntity.ClienteId,
+      );
 
       const order = OrderEntityMapper.mapToOrderDomain(
         orderEntity,
-        'teste',
+        cliente.nome
       );
       const orderCombos =
         OrderEntityMapper.mapToOrderComboDomain(combosEntities);

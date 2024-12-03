@@ -12,7 +12,7 @@ import { ClienteModule } from 'src/infrastructure/client/cliente/cliente.module'
 import { PagamentoModule } from 'src/infrastructure/client/pagamentos/pagamento.module';
 
 @Module({
-  imports: [ProdutoModule, PagamentoModule],
+  imports: [ProdutoModule, PagamentoModule, ClienteModule],
   controllers: [OrderController],
   providers: [
     OrderMapper,
@@ -27,10 +27,6 @@ import { PagamentoModule } from 'src/infrastructure/client/pagamentos/pagamento.
     {
       provide: IPedidoRepository,
       useClass: PedidoRepository,
-    },
-    {
-      provide: 'IClienteClient',
-      useClass: ClienteModule,
     }
   ],
 })
