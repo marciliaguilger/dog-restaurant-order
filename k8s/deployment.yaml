@@ -32,7 +32,7 @@ spec:
         - name: PRODUTOS_API_URL
           value: ''  
         - name: PAGAMENTOS_API_URL
-          value: 'http://dog-restaurant-payments.default.svc.cluster.local:3000'                  
+          value: 'http://dog-restaurant-payments.default.svc.cluster.local:80'                  
         - name: AWS_REGION
           value: "us-east-1"   
         - name: DB_NAME
