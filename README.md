@@ -57,6 +57,9 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+Test coverage: 81,1%
+![image](https://github.com/user-attachments/assets/4fef8772-fc82-4f6a-9a71-582896bcfd70)
+
 
 ## Resources
 
