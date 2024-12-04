@@ -14,6 +14,7 @@ export class ClienteClient implements IClienteClient {
       const { data } = await firstValueFrom(
         this.httpService.get<Cliente>(url).pipe(
           catchError((error: AxiosError) => {
+            console.log(error)
             throw new HttpException(error.response.data, error.response.status);
           }),
         ),
